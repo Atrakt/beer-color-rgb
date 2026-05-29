@@ -6,6 +6,15 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.4] - 2026-05-29
+
+### Changed
+
+- Unpinned `devDependencies` to allow non-breaking updates and resolve security scanner penalties (Socket.dev).
+- Setup Dependabot for weekly npm updates.
+- Bumped `@types/node`, `tsx`, `typescript`, and `vitest`.
+- Fixed TypeScript 6.0 build compatibilities.
+
 ## [0.3.3] - 2026-05-07
 
 ### Fixed
