@@ -1,15 +1,15 @@
 # beer-color-rgb
 
 > Convert EBC (European Brewery Convention) or SRM (Standard Reference Method) beer color values to RGB hex codes with scientific accuracy.
+> Zero dependencies, fully typed, and ultra-lightweight (~2kB bundle size).
 
-![Version](https://img.shields.io/github/package-json/v/Atrakt/beer-color-rgb?color=blue)
-![Build](https://img.shields.io/github/actions/workflow/status/Atrakt/beer-color-rgb/release.yml)
-![Size](https://img.shields.io/github/repo-size/Atrakt/beer-color-rgb)
-![Socket Badge](https://badge.socket.dev/npm/package/beer-color-rgb)
 ![npm](https://img.shields.io/npm/v/beer-color-rgb?color=CB3837&logo=npm&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Bundle Size](https://img.shields.io/bundlejs/size/beer-color-rgb)
+![Types](https://img.shields.io/npm/types/beer-color-rgb?logo=typescript&logoColor=white)
+![Build](https://img.shields.io/github/actions/workflow/status/Atrakt/beer-color-rgb/release.yml)
+![Socket Badge](https://badge.socket.dev/npm/package/beer-color-rgb)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/npm/l/beer-color-rgb?color=green)
 
 ## Table of Contents
 
@@ -34,7 +34,15 @@
 
 **[→ Live demo](https://atrakt.github.io/beer-color-rgb-demo)**
 
-One package — use it as a **library**, a **CLI** (with CSS/JSON generation), or a **Tailwind CSS plugin**.
+> One package to rule them all,
+> One library to type them,
+> One plugin to style them all,
+> Or in the CLI compile them.
+
+Choose how you want to integrate it into your workflow:
+- As a **core TypeScript library** for direct color conversion logic.
+- As a **Tailwind CSS v4 plugin** to auto-generate color utility classes.
+- As a **CLI tool** to generate static JSON/CSS color palettes.
 
 ## Getting Started
 
