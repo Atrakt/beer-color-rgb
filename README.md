@@ -2,13 +2,14 @@
 
 > Convert EBC (European Brewery Convention) or SRM (Standard Reference Method) beer color values to RGB hex codes with scientific accuracy.
 
-[![Version](https://img.shields.io/github/package-json/v/Atrakt/beer-color-rgb?color=blue)](https://github.com/Atrakt/beer-color-rgb)
-[![Status](https://img.shields.io/badge/status-stable-brightgreen)](https://github.com/Atrakt/beer-color-rgb)
-[![npm](https://img.shields.io/npm/v/beer-color-rgb?color=CB3837&logo=npm&logoColor=white)](https://www.npmjs.com/package/beer-color-rgb)
-[![Socket Badge](https://badge.socket.dev/npm/package/beer-color-rgb)](https://badge.socket.dev/npm/package/beer-color-rgb)
-[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
+![Version](https://img.shields.io/github/package-json/v/Atrakt/beer-color-rgb?color=blue)
+![Build](https://img.shields.io/github/actions/workflow/status/Atrakt/beer-color-rgb/release.yml)
+![Size](https://img.shields.io/github/repo-size/Atrakt/beer-color-rgb)
+![Socket Badge](https://badge.socket.dev/npm/package/beer-color-rgb)
+![npm](https://img.shields.io/npm/v/beer-color-rgb?color=CB3837&logo=npm&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-18+-339933?logo=node.js&logoColor=white)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Table of Contents
 
@@ -98,11 +99,11 @@ npx beer-color-rgb 20 --path 3
 
 /* Optional: configure via @theme */
 @theme {
-  --beer-light-path: 3;    /* optical path in cm, default 5 */
-  --beer-ebc-start: 1;     /* EBC range start, default 1 */
-  --beer-ebc-end: 20;      /* EBC range end, default 80 */
-  --beer-srm-start: 1;     /* SRM range start, default 1 */
-  --beer-srm-end: 15;      /* SRM range end, default 40 */
+  --beer-light-path: 3; /* optical path in cm, default 5 */
+  --beer-ebc-start: 1; /* EBC range start, default 1 */
+  --beer-ebc-end: 20; /* EBC range end, default 80 */
+  --beer-srm-start: 1; /* SRM range start, default 1 */
+  --beer-srm-end: 15; /* SRM range end, default 40 */
 }
 ```
 
