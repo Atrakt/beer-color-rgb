@@ -48,7 +48,16 @@
     "beer",
     "color",
     "rgb",
+    "hex",
+    "color-conversion",
+    "colorimetry",
+    "palette",
     "brewing",
+    "homebrewing",
+    "tailwindcss",
+    "tailwind-plugin",
+    "css",
+    "typescript",
     "A.J. de Lange"
   ],
   "engines": {

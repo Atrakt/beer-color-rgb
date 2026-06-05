@@ -32,17 +32,18 @@
 
 `beer-color-rgb` takes an EBC or SRM value and converts it to a precise RGB color. It uses the **A.J. de Lange spectral model** — a scientifically validated method based on light transmission analysis of 99 real beers — producing colorimetrically accurate results suitable for brewing apps, color pickers, and design systems.
 
-**[→ Live demo](https://atrakt.github.io/beer-color-rgb-demo)**
-
 > One package to rule them all,
 > One library to type them,
 > One plugin to style them all,
 > Or in the CLI compile them.
 
 Choose how you want to integrate it into your workflow:
+
 - As a **core TypeScript library** for direct color conversion logic.
 - As a **Tailwind CSS v4 plugin** to auto-generate color utility classes.
 - As a **CLI tool** to generate static JSON/CSS color palettes.
+
+**[→ Live demo](https://atrakt.github.io/beer-color-rgb-demo)**
 
 ## Getting Started
 
