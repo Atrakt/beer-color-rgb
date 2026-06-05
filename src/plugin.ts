@@ -13,20 +13,31 @@ interface TailwindHelpers {
   theme?: (path: string) => string | undefined
 }
 
+type ThemeFn = (path: string) => string | undefined
+
+/** Reads a numeric @theme value, falling back to `fallback` when missing, empty, or non-numeric. */
+function themeNumber(theme: ThemeFn | undefined, key: string, fallback: number): number {
+  const raw = theme?.(key)
+  if (raw === undefined || raw.trim() === '') return fallback
+  const n = Number(raw)
+  return Number.isFinite(n) ? n : fallback
+}
+
 export function beerColorPlugin(options: PluginOptions = {}) {
   return function({ addUtilities, matchUtilities, theme }: TailwindHelpers): void {
-    const lightPath = options.lightPath ?? Number(theme?.('--beer-light-path') ?? 5)
+    const rawLightPath = options.lightPath ?? themeNumber(theme, '--beer-light-path', 5)
+    const lightPath = rawLightPath > 0 ? rawLightPath : 5
 
     const ebcRange: [number, number] | false =
       options.ebcRange === false ? false : [
-        options.ebcRange?.[0] ?? Number(theme?.('--beer-ebc-start') ?? 1),
-        options.ebcRange?.[1] ?? Number(theme?.('--beer-ebc-end')   ?? 80),
+        options.ebcRange?.[0] ?? themeNumber(theme, '--beer-ebc-start', 1),
+        options.ebcRange?.[1] ?? themeNumber(theme, '--beer-ebc-end',   80),
       ]
 
     const srmRange: [number, number] | false =
       options.srmRange === false ? false : [
-        options.srmRange?.[0] ?? Number(theme?.('--beer-srm-start') ?? 1),
-        options.srmRange?.[1] ?? Number(theme?.('--beer-srm-end')   ?? 40),
+        options.srmRange?.[0] ?? themeNumber(theme, '--beer-srm-start', 1),
+        options.srmRange?.[1] ?? themeNumber(theme, '--beer-srm-end',   40),
       ]
 
     const colorOpts: ColorOptions = { lightPath }

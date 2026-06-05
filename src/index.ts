@@ -73,5 +73,5 @@ export function srmToRgbObject(srm: number, options: ColorOptions = {}): RgbObje
  * Converts SRM to a raw RGB array.
  */
 export function srmToRgbArray(srm: number, options: ColorOptions = {}): [number, number, number] {
-  return _ebcToRgbArray(srm * 1.97, options.lightPath ?? DEFAULT_PATH)
+  return ebcToRgbArray(srm * 1.97, options)
 }

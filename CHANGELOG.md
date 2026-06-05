@@ -6,12 +6,27 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.5] - 2026-06-05
+
+### Fixed
+
+- CLI: invalid `--path`, malformed `--range`, and non-numeric values now print a clear error and exit cleanly instead of leaking a stack trace.
+- CLI: file write errors (`--output`) are reported with a readable message.
+- Tailwind plugin: non-numeric or empty `@theme` values (e.g. `--beer-light-path`, `--beer-ebc-end`) now fall back to defaults instead of breaking the build or silently generating zero classes.
+- `package.json`: pinned `devDependencies` to exact versions for reproducible builds.
+
+### Added
+
+- Test coverage for the CLI core (`parseNumber`, `parseRange`, CSS/JSON generation) and plugin theme fallbacks.
+
+### Changed
+
+- Extracted CLI logic into a testable `cli-core` module; `cli.ts` is now a thin entry point.
+
 ## [0.3.4] - 2026-05-29
 
 ### Changed
 
-- Unpinned `devDependencies` to allow non-breaking updates and resolve security scanner penalties (Socket.dev).
-- Setup Dependabot for weekly npm updates.
 - Bumped `@types/node`, `tsx`, `typescript`, and `vitest`.
 - Fixed TypeScript 6.0 build compatibilities.
 

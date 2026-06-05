@@ -149,9 +149,9 @@ export function ebcToRgbArray(ebc: number, pathCm: number): [number, number, num
   const bLin =  0.0557101 * X + -0.2040211 * Y +  1.0569959 * Z
 
   // Clamp to [0, 1] before gamma — linear channels can be slightly negative (e.g. blue on pale beers)
-  const r = Math.round(Math.min(255, Math.max(0, _gamma(Math.max(0, rLin)) * 255)))
-  const g = Math.round(Math.min(255, Math.max(0, _gamma(Math.max(0, gLin)) * 255)))
-  const b = Math.round(Math.min(255, Math.max(0, _gamma(Math.max(0, bLin)) * 255)))
+  const r = Math.round(Math.min(255, _gamma(Math.max(0, rLin)) * 255))
+  const g = Math.round(Math.min(255, _gamma(Math.max(0, gLin)) * 255))
+  const b = Math.round(Math.min(255, _gamma(Math.max(0, bLin)) * 255))
 
   return [r, g, b]
 }

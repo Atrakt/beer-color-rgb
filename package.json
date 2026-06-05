@@ -1,6 +1,6 @@
 {
   "name": "beer-color-rgb",
-  "version": "0.3.4",
+  "version": "0.3.5",
   "description": "Convert EBC or SRM beer color values to RGB/hex — A.J. de Lange spectral model, CSS-ready",
   "type": "module",
   "main": "./dist/index.cjs",

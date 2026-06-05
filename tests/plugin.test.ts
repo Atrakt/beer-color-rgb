@@ -91,3 +91,35 @@ describe('beerColorPlugin (v4 theme helper)', () => {
     expect(utilities['.srm-40']).toBeDefined()
   })
 })
+
+describe('beerColorPlugin — robust theme parsing', () => {
+  const makeHelpers = (themeValues: Record<string, string>, out: Record<string, any>) => ({
+    addUtilities: (u: any) => Object.assign(out, u),
+    matchUtilities: () => {},
+    theme: (key: string) => themeValues[key],
+  })
+
+  it('falls back to default lightPath on non-numeric theme value (no throw)', () => {
+    const plugin = beerColorPlugin({ ebcRange: [20, 20], srmRange: false })
+    const utilities: Record<string, any> = {}
+    expect(() => plugin(makeHelpers({ '--beer-light-path': 'abc' }, utilities) as any)).not.toThrow()
+    // default 5cm → not the 3cm reference value
+    expect(utilities['.ebc-bg-20'].backgroundColor).toMatch(/^#[0-9a-f]{6}$/)
+    expect(utilities['.ebc-bg-20'].backgroundColor).not.toBe('#d88900')
+  })
+
+  it('falls back to default lightPath on empty theme value (previously threw RangeError)', () => {
+    const plugin = beerColorPlugin({ ebcRange: [20, 20], srmRange: false })
+    const utilities: Record<string, any> = {}
+    expect(() => plugin(makeHelpers({ '--beer-light-path': '' }, utilities) as any)).not.toThrow()
+    expect(utilities['.ebc-bg-20']).toBeDefined()
+  })
+
+  it('falls back to default range on non-numeric theme value (still generates classes, not silent empty)', () => {
+    const plugin = beerColorPlugin({ srmRange: false })
+    const utilities: Record<string, any> = {}
+    plugin(makeHelpers({ '--beer-ebc-end': 'auto' }, utilities) as any)
+    expect(utilities['.ebc-1']).toBeDefined()
+    expect(utilities['.ebc-80']).toBeDefined()
+  })
+})
