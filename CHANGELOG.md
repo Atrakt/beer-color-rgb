@@ -6,6 +6,17 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Security
+
+- Closed [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849) (high) — `postcss` path traversal via `sourceMappingURL` auto-loading; reached transitively through `tsup` and `vite`. Now resolves to 8.5.25.
+- Closed [GHSA-g7r4-m6w7-qqqr](https://github.com/advisories/GHSA-g7r4-m6w7-qqqr) (low) — `esbuild` dev-server path traversal on Windows. `tsup` pins `esbuild@^0.27.0`, a range with no fixed release, so `package.json` now carries an `overrides` entry forcing `esbuild@^0.28.1` across the tree.
+- Build chain only: this package ships no runtime dependencies, so installed versions of `beer-color-rgb` were never affected.
+- Release workflow: `npm audit --audit-level=high` now gates `npm publish`, and all GitHub Actions are pinned to commit SHAs instead of mutable tags.
+
+### Changed
+
+- Bumped `@types/node` (25.9.1 → 26.1.2), `tsx` (4.22.4 → 4.23.1), and `vitest` (4.1.8 → 4.1.10).
+
 ## [0.3.5] - 2026-06-05
 
 ### Fixed
@@ -114,7 +125,10 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Build pipeline: tsup (ESM + CJS + TypeScript declarations), vitest, tsx.
 - `.gitignore` with `node_modules/`, `dist/`, `*.log`, `coverage/`.
 
-[Unreleased]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.2...HEAD
+[Unreleased]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.5...HEAD
+[0.3.5]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.4...v0.3.5
+[0.3.4]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.3...v0.3.4
+[0.3.3]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.2...v0.3.3
 [0.3.2]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.1...v0.3.2
 [0.3.1]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.0...v0.3.1
 [0.3.0]: https://github.com/Atrakt/beer-color-rgb/releases/tag/v0.3.0
