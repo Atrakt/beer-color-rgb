@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: lts/*
-          registry-url: "https://registry.npmjs.org"
+          # No registry-url: it writes an empty _authToken to .npmrc, which stops npm from using OIDC
           package-manager-cache: false
 
       # No dependency install scripts: they would run with id-token: write
