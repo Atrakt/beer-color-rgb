@@ -10,6 +10,9 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 - Closed [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849) (high) — `postcss` path traversal via `sourceMappingURL` auto-loading; reached transitively through `tsup` and `vite`. Now resolves to 8.5.25.
 - Closed [GHSA-g7r4-m6w7-qqqr](https://github.com/advisories/GHSA-g7r4-m6w7-qqqr) (low) — `esbuild` dev-server path traversal on Windows. `tsup` pins `esbuild@^0.27.0`, a range with no fixed release, so `package.json` now carries an `overrides` entry forcing `esbuild@^0.28.1` across the tree.
+- Closed [GHSA-82fw-gwwq-j7x9](https://github.com/advisories/GHSA-82fw-gwwq-j7x9) (moderate) — `vitest` / `@vitest/mocker` path traversal via redirect mock. Bumped `vitest` 4.1.10 → 4.1.12.
+- Closed `vite` advisories [GHSA-r825-w8mm-5pxw](https://github.com/advisories/GHSA-r825-w8mm-5pxw), [GHSA-587h-7wmj-h5pm](https://github.com/advisories/GHSA-587h-7wmj-h5pm), [GHSA-698v-4r3x-3vcv](https://github.com/advisories/GHSA-698v-4r3x-3vcv) (`launch-editor`), [GHSA-9jrq-w75r-8gcw](https://github.com/advisories/GHSA-9jrq-w75r-8gcw) and [GHSA-rq7h-c2jc-7f22](https://github.com/advisories/GHSA-rq7h-c2jc-7f22) (high) — now resolves to 8.3.5.
+- Closed [GHSA-68fv-2mgg-jv7q](https://github.com/advisories/GHSA-68fv-2mgg-jv7q) (high, `source-map-js` → 1.2.2) and [GHSA-2v37-7h3g-55p8](https://github.com/advisories/GHSA-2v37-7h3g-55p8) (high, `nanoid` → 3.3.20), both reached through `postcss` (now 8.5.31).
 - Build chain only: this package ships no runtime dependencies, so installed versions of `beer-color-rgb` were never affected.
 - Release workflow: `npm audit --audit-level=high` now gates `npm publish`, and all GitHub Actions are pinned to commit SHAs instead of mutable tags.
 
