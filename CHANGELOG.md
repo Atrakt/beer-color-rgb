@@ -17,6 +17,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Release workflow: `npm audit --audit-level=high` now gates `npm publish`, and all GitHub Actions are pinned to commit SHAs instead of mutable tags.
 
 - Release workflow: publishes through npm trusted publishing (OIDC). The long-lived `NPM_TOKEN` secret is no longer used.
+- Release workflow: upgraded `actions/checkout` (v7.0.1), `actions/setup-node` (v7.1.0) and `softprops/action-gh-release` (v3.0.3) to the Node 24 runtime. Checkout no longer persists the Git token, `npm ci` runs with `--ignore-scripts`, and dependency caching is disabled.
 
 ### Changed
 
