@@ -6,6 +6,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.3.6] - 2026-10-21
+
 ### Security
 
 - Closed [GHSA-r28c-9q8g-f849](https://github.com/advisories/GHSA-r28c-9q8g-f849) (high) — `postcss` path traversal via `sourceMappingURL` auto-loading; reached transitively through `tsup` and `vite`. Now resolves to 8.5.25.
@@ -15,8 +17,7 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Closed [GHSA-68fv-2mgg-jv7q](https://github.com/advisories/GHSA-68fv-2mgg-jv7q) (high, `source-map-js` → 1.2.2) and [GHSA-2v37-7h3g-55p8](https://github.com/advisories/GHSA-2v37-7h3g-55p8) (high, `nanoid` → 3.3.20), both reached through `postcss` (now 8.5.31).
 - Build chain only: this package ships no runtime dependencies, so installed versions of `beer-color-rgb` were never affected.
 - Release workflow: `npm audit --audit-level=high` now gates `npm publish`, and all GitHub Actions are pinned to commit SHAs instead of mutable tags.
-
-- Release workflow: publishes through npm trusted publishing (OIDC). The long-lived `NPM_TOKEN` secret is no longer used.
+- Release workflow: publishes through npm trusted publishing (OIDC). The long-lived `NPM_TOKEN` secret is no longer used. Releases are staged (`npm stage publish`) and go public only after maintainer approval with 2FA.
 - Release workflow: upgraded `actions/checkout` (v7.0.1), `actions/setup-node` (v7.1.0) and `softprops/action-gh-release` (v3.0.3) to the Node 24 runtime. Checkout no longer persists the Git token, `npm ci` runs with `--ignore-scripts`, and dependency caching is disabled.
 
 ### Fixed
@@ -139,7 +140,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Build pipeline: tsup (ESM + CJS + TypeScript declarations), vitest, tsx.
 - `.gitignore` with `node_modules/`, `dist/`, `*.log`, `coverage/`.
 
-[Unreleased]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.5...HEAD
+[Unreleased]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.6...HEAD
+[0.3.6]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.5...v0.3.6
 [0.3.5]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.4...v0.3.5
 [0.3.4]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.3...v0.3.4
 [0.3.3]: https://github.com/Atrakt/beer-color-rgb/compare/v0.3.2...v0.3.3
