@@ -16,6 +16,8 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Build chain only: this package ships no runtime dependencies, so installed versions of `beer-color-rgb` were never affected.
 - Release workflow: `npm audit --audit-level=high` now gates `npm publish`, and all GitHub Actions are pinned to commit SHAs instead of mutable tags.
 
+- Release workflow: publishes through npm trusted publishing (OIDC). The long-lived `NPM_TOKEN` secret is no longer used.
+
 ### Changed
 
 - Bumped `@types/node` (25.9.1 → 26.1.2), `tsx` (4.22.4 → 4.23.1), and `vitest` (4.1.8 → 4.1.10).

@@ -24,9 +24,8 @@ jobs:
       - run: npm run build
       - run: npm test
 
+      # Trusted publishing (OIDC via id-token: write) — no npm token stored
       - run: npm publish --provenance
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Extract release notes from CHANGELOG
         run: |
