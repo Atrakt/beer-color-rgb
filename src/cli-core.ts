@@ -1,6 +1,30 @@
 import { ebcToHex, srmToHex } from './index.js'
 import type { ColorOptions } from './index.js'
 
+/** Largest number of values a range may generate. */
+export const MAX_RANGE_SIZE = 1000
+
+/**
+ * Returns the value following `flag`, or undefined if the flag is absent.
+ * @throws RangeError when the flag is present but has no value.
+ */
+export function getArg(args: string[], flag: string): string | undefined {
+  const i = args.indexOf(flag)
+  if (i < 0) return undefined
+  const value = args[i + 1]
+  if (value === undefined || value.startsWith('--')) throw new RangeError(`Missing value for ${flag}`)
+  return value
+}
+
+/**
+ * Parses the --unit value (default: ebc).
+ * @throws RangeError on anything other than ebc or srm.
+ */
+export function parseUnit(raw: string | undefined): 'ebc' | 'srm' {
+  if (raw === undefined || raw === 'ebc' || raw === 'srm') return raw ?? 'ebc'
+  throw new RangeError(`Unknown unit: ${raw}. Use ebc or srm.`)
+}
+
 /**
  * Strict numeric parse. Rejects empty strings, NaN, Infinity, and trailing
  * garbage ("20px" → null, unlike parseFloat which would return 20).
@@ -14,7 +38,8 @@ export function parseNumber(raw: string | undefined): number | null {
 
 /**
  * Parses a "min-max" range. Requires exactly two finite parts with min <= max.
- * @throws RangeError on malformed input (negative leading dash, extra dashes, non-numeric).
+ * @throws RangeError on malformed input (negative leading dash, extra dashes, non-numeric)
+ *   or a range of more than MAX_RANGE_SIZE values.
  */
 export function parseRange(raw: string | undefined, unit: string): [number, number] {
   if (!raw) return unit === 'srm' ? [1, 40] : [1, 80]
@@ -23,6 +48,9 @@ export function parseRange(raw: string | undefined, unit: string): [number, numb
   const b = parts.length === 2 ? parseNumber(parts[1]) : null
   if (a === null || b === null || a > b) {
     throw new RangeError(`Invalid range: ${raw}. Expected format min-max (e.g. 1-80).`)
+  }
+  if (Math.floor(b - a) + 1 > MAX_RANGE_SIZE) {
+    throw new RangeError(`Range too large: ${raw}. At most ${MAX_RANGE_SIZE} values.`)
   }
   return [a, b]
 }

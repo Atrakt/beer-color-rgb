@@ -156,9 +156,11 @@ beer-color-rgb/
 ├── src/
 │   ├── convert.ts          # Core conversion logic (A.J. de Lange spectral model)
 │   ├── index.ts            # Public API exports
-│   ├── cli.ts              # Command-line interface
+│   ├── cli.ts              # Command-line interface (entry point)
+│   ├── cli-core.ts         # CLI argument parsing and CSS/JSON generation
 │   └── plugin.ts           # Tailwind CSS plugin
 ├── tests/
+│   ├── cli.test.ts
 │   ├── convert.test.ts
 │   ├── index.test.ts
 │   └── plugin.test.ts

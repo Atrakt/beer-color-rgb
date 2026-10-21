@@ -1,5 +1,38 @@
 import { describe, it, expect } from 'vitest'
-import { parseNumber, parseRange, generateCss, generateJson } from '../src/cli-core.js'
+import { getArg, parseNumber, parseRange, parseUnit, generateCss, generateJson } from '../src/cli-core.js'
+
+describe('getArg', () => {
+  it('returns the value following the flag', () => {
+    expect(getArg(['20', '--path', '3'], '--path')).toBe('3')
+  })
+
+  it('returns undefined when the flag is absent', () => {
+    expect(getArg(['20'], '--path')).toBeUndefined()
+  })
+
+  it('throws when the flag has no value (last argument)', () => {
+    expect(() => getArg(['--srm'], '--srm')).toThrow('Missing value for --srm')
+  })
+
+  it('throws when the flag is followed by another flag', () => {
+    expect(() => getArg(['generate', '--output', '--format', 'css'], '--output')).toThrow('Missing value for --output')
+  })
+})
+
+describe('parseUnit', () => {
+  it('defaults to ebc', () => {
+    expect(parseUnit(undefined)).toBe('ebc')
+  })
+
+  it('accepts ebc and srm', () => {
+    expect(parseUnit('ebc')).toBe('ebc')
+    expect(parseUnit('srm')).toBe('srm')
+  })
+
+  it('throws on unknown unit', () => {
+    expect(() => parseUnit('foo')).toThrow(RangeError)
+  })
+})
 
 describe('parseNumber', () => {
   it('parses valid numbers (incl. surrounding whitespace)', () => {
@@ -46,6 +79,15 @@ describe('parseRange', () => {
 
   it('throws on extra dashes', () => {
     expect(() => parseRange('1-80-extra', 'ebc')).toThrow(RangeError)
+  })
+
+  it('accepts up to 1000 values', () => {
+    expect(parseRange('1-1000', 'ebc')).toEqual([1, 1000])
+  })
+
+  it('throws when the range exceeds 1000 values', () => {
+    expect(() => parseRange('1-1001', 'ebc')).toThrow(RangeError)
+    expect(() => parseRange('1-100000000', 'ebc')).toThrow(RangeError)
   })
 
   it('throws on incomplete / non-numeric input', () => {

@@ -122,4 +122,20 @@ describe('beerColorPlugin — robust theme parsing', () => {
     expect(utilities['.ebc-1']).toBeDefined()
     expect(utilities['.ebc-80']).toBeDefined()
   })
+
+  it('falls back to default range when theme range exceeds 1000 values', () => {
+    const plugin = beerColorPlugin({ srmRange: false })
+    const utilities: Record<string, any> = {}
+    plugin(makeHelpers({ '--beer-ebc-end': '100000000' }, utilities) as any)
+    expect(utilities['.ebc-80']).toBeDefined()
+    expect(utilities['.ebc-81']).toBeUndefined()
+  })
+
+  it('falls back to default range when JS option range exceeds 1000 values', () => {
+    const plugin = beerColorPlugin({ ebcRange: false, srmRange: [1, 5000] })
+    const utilities: Record<string, any> = {}
+    plugin(makeHelpers({}, utilities) as any)
+    expect(utilities['.srm-40']).toBeDefined()
+    expect(utilities['.srm-41']).toBeUndefined()
+  })
 })

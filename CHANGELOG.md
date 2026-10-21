@@ -19,6 +19,14 @@ Versioning follows [Semantic Versioning](https://semver.org/).
 - Release workflow: publishes through npm trusted publishing (OIDC). The long-lived `NPM_TOKEN` secret is no longer used.
 - Release workflow: upgraded `actions/checkout` (v7.0.1), `actions/setup-node` (v7.1.0) and `softprops/action-gh-release` (v3.0.3) to the Node 24 runtime. Checkout no longer persists the Git token, `npm ci` runs with `--ignore-scripts`, and dependency caching is disabled.
 
+### Fixed
+
+- CLI: a flag given without a value (e.g. `--srm`, `--path`, `--output` as last argument) now fails with `Missing value for <flag>` instead of being silently ignored or printing `Invalid value: undefined`.
+- CLI: `--unit` is validated; anything other than `ebc` or `srm` is rejected instead of silently generating EBC classes.
+- CLI: `--range` is capped at 1000 values to prevent runaway generation (e.g. `--range 1-100000000`).
+- Tailwind plugin: a range of more than 1000 values (from `@theme` or JS options) falls back to the default range instead of hanging the build.
+- README: project structure now lists `cli-core.ts` and `cli.test.ts`.
+
 ### Changed
 
 - Bumped `@types/node` (25.9.1 → 26.1.2), `tsx` (4.22.4 → 4.23.1), and `vitest` (4.1.8 → 4.1.10).

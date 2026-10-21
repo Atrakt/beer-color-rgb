@@ -15,6 +15,14 @@ interface TailwindHelpers {
 
 type ThemeFn = (path: string) => string | undefined
 
+/** Largest number of values a range may generate. */
+const MAX_RANGE_SIZE = 1000
+
+/** Falls back to `fallback` when the range would generate more than MAX_RANGE_SIZE classes. */
+function capRange(range: [number, number], fallback: [number, number]): [number, number] {
+  return Math.floor(range[1] - range[0]) + 1 > MAX_RANGE_SIZE ? fallback : range
+}
+
 /** Reads a numeric @theme value, falling back to `fallback` when missing, empty, or non-numeric. */
 function themeNumber(theme: ThemeFn | undefined, key: string, fallback: number): number {
   const raw = theme?.(key)
@@ -29,16 +37,16 @@ export function beerColorPlugin(options: PluginOptions = {}) {
     const lightPath = rawLightPath > 0 ? rawLightPath : 5
 
     const ebcRange: [number, number] | false =
-      options.ebcRange === false ? false : [
+      options.ebcRange === false ? false : capRange([
         options.ebcRange?.[0] ?? themeNumber(theme, '--beer-ebc-start', 1),
         options.ebcRange?.[1] ?? themeNumber(theme, '--beer-ebc-end',   80),
-      ]
+      ], [1, 80])
 
     const srmRange: [number, number] | false =
-      options.srmRange === false ? false : [
+      options.srmRange === false ? false : capRange([
         options.srmRange?.[0] ?? themeNumber(theme, '--beer-srm-start', 1),
         options.srmRange?.[1] ?? themeNumber(theme, '--beer-srm-end',   40),
-      ]
+      ], [1, 40])
 
     const colorOpts: ColorOptions = { lightPath }
     const utilities: Record<string, Record<string, string>> = {}

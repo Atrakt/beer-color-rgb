@@ -2,7 +2,7 @@
 import { writeFileSync } from 'node:fs'
 import { ebcToHex, srmToHex } from './index.js'
 import type { ColorOptions } from './index.js'
-import { parseNumber, parseRange, generateCss, generateJson } from './cli-core.js'
+import { getArg as getArgFrom, parseNumber, parseRange, parseUnit, generateCss, generateJson } from './cli-core.js'
 
 const args = process.argv.slice(2)
 
@@ -32,8 +32,7 @@ Examples:
 }
 
 function getArg(flag: string): string | undefined {
-  const i = args.indexOf(flag)
-  return i >= 0 ? args[i + 1] : undefined
+  return getArgFrom(args, flag)
 }
 
 function hasFlag(flag: string): boolean {
@@ -61,7 +60,7 @@ try {
 
   if (args[0] === 'generate') {
     const format = getArg('--format') ?? 'css'
-    const unit = getArg('--unit') ?? 'ebc'
+    const unit = parseUnit(getArg('--unit'))
     const output = getArg('--output')
     const [min, max] = parseRange(getArg('--range'), unit)
 
