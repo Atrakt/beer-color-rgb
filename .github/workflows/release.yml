@@ -28,8 +28,9 @@ jobs:
       - run: npm run build
       - run: npm test
 
-      # Trusted publishing (OIDC via id-token: write) — no npm token stored
-      - run: npm publish --provenance
+      # Trusted publishing (OIDC via id-token: write) — no npm token stored.
+      # Staged: the version goes public only after a maintainer approves it with 2FA.
+      - run: npm stage publish --provenance
 
       - name: Extract release notes from CHANGELOG
         run: |
